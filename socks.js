@@ -1,4 +1,5 @@
 var io = require('socket.io')(1337);
+var i = 0;
 
 io.on('connection', function (socket) {
   io.emit('this', { will: 'be received by everyone'});
@@ -8,7 +9,8 @@ io.on('connection', function (socket) {
   });
 
   socket.on('clickedEvent', function(){
-  	io.emit('newClient', {updateClient : true});
+    io.emit('newClient', {updateClient : i});
+    i++;
   });
 
   socket.on('disconnect', function () {
